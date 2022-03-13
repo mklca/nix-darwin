@@ -107,13 +107,13 @@ in
       echo "configuring networking..." >&2
 
       ${optionalString (cfg.computerName != null) ''
-        scutil --set ComputerName '${cfg.computerName}'
+        scutil --set ComputerName ${lib.escapeShellArg cfg.computerName}
       ''}
       ${optionalString (cfg.hostName != null) ''
-        scutil --set HostName '${cfg.hostName}'
+        scutil --set HostName ${lib.escapeShellArg cfg.hostName}
       ''}
       ${optionalString (cfg.localHostName != null) ''
-        scutil --set LocalHostName '${cfg.localHostName}'
+        scutil --set LocalHostName ${lib.escapeShellArg cfg.localHostName}
       ''}
 
       ${setNetworkServices}
